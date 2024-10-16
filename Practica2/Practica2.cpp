@@ -21,7 +21,7 @@ int main()
 	int opcion; //opcion elegida para el menu
 	int a, b, c, r; // variables de tipo int que se va a usar en las diferentes funciones
 	double p, i; // variables que se van a usar para la función con los punteros
-
+	long  yl, xl;
 	printf("PRACTICA 2\n"); // Texto que va a parecer en pantalla
 	printf("-------------\n");
 	opcion = menu();  //variable que va a llamar a la función menu
@@ -33,7 +33,7 @@ int main()
 			printf("Ejercicio 1: desplazar\n"); //Proyectamos por pantalla
 			printf("Introduzca un numero: "); //Proyectamos por pantalla
 			scanf_s("%d", &a); //Pedimos al usuario que inserte un numero y lo guardamos en la variable
-			printf("Escriba el numero de veces a desplazara a la derecha: "); //Proyectamos por pantalla
+			printf("Posiciones a desplazar a la derecha:: "); //Proyectamos por pantalla
 			scanf_s("%d", &b); //Pedimos al usuario que inserte un numero y lo guardamos en la variable
 			r = desplazar(a, b); //Llamamos a la función desplazar y guardamos en r el resultado que devuelva la funcion desplazar
 			printf("El numero desplazado es %d: \n", r); //Proyectamos por pantalla el resultado obtenido
@@ -41,7 +41,7 @@ int main()
 
 		case 2:
 			printf("Ejercicio 2: par o impar\n");//Proyectamos por pantalla
-			printf("Introduzca un numero para saber si es par o impar: ");//Proyectamos por pantalla
+			printf("Introduzca un número:: ");//Proyectamos por pantalla
 			scanf_s("%d", &a);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
 			r = Parimpar(a);//Llamamos a la función Parimpar y guardamos en r el resultado que devuelva la funcion Parimpar
 			if (r == 0)
@@ -61,39 +61,42 @@ int main()
 			printf("Ejercicio 4: poner a cero un bit\n");//Proyectamos por pantalla
 			printf("Introduzca un numero: ");//Proyectamos por pantalla
 			scanf_s("%d", &a);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
-			printf("Introduzca la posicion del bit a poner a 0 ");//Proyectamos por pantalla
+			printf("Posición del bit a poner a cero: ");//Proyectamos por pantalla
 			scanf_s("%d", &b);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
 			r = ponerAceroBit(a, b);//Llamamos a la función ponerAceroBit y guardamos en r el resultado que devuelva la funcion ponerAceroBit
 			printf("El resultado es %d", r);//Proyectamos por pantalla el resultado
 			break;//Sale del bucle al acabar el programa
 
 		case 5:
-			printf("Ejercicio 5: Obtener valor bit\n");//Proyectamos por pantalla
+			printf("Ejercicio 5: obtener valor de un bit\n");//Proyectamos por pantalla
 			printf("Introduzca un numero: ");//Proyectamos por pantalla
 			scanf_s("%d", &a);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
 			printf("Posicion de bit: ");//Proyectamos por pantalla
 			scanf_s("%d", &b);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
 			while (b < 0)
 			{
+				printf("Posicion de bit: ");
 				scanf_s("%d", &b);
 			}
 			r = obtenerValorBit(a, b);
-			printf("El valor del bit %d:", r);
+			printf("El valor del bit: %d", r);
 			break;//Sale del bucle al acabar el programa
 
 		case 6:
 			printf("Ejercicio 6: factorial\n");//Proyectamos por pantalla
-			printf("Introduzca un numero entero positivo: ");//Proyectamos por pantalla
-			scanf_s("%d", &a);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
-			if (a >= 0 && a <= 16)
+			do
 			{
-				b = factorial(a);
-				printf("El numero factorial de %d es %d:  ", a, b);
+				printf("Introduzca un numero entero positivo: ");//Proyectamos por pantalla
+				scanf_s("%d", &yl);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
+			} while (yl < 0);
+				xl = factorial(yl);
+			if (xl == -1)
+			{
+				printf("No es posible calcular el factorial");//Proyectamos por pantalla
 			}
 			else
 			{
-				printf("No se puede insertar valores que no esten entre 0 y 16");//Proyectamos por pantalla
-				return(-1);
+				printf("El numero factorial de %d es %d:  ", yl, xl);
 			}
 			break;//Sale del bucle al acabar el programa
 
@@ -101,18 +104,35 @@ int main()
 			printf("Ejercicio 7: numero de bits\n");//Proyectamos por pantalla
 			printf("Introduzca un numero entero positivo: ");//Proyectamos por pantalla
 			scanf_s("%d", &a);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
+			while (a < 0)
+			{
+				printf("Introduzca un numero entero positivo: ");
+				scanf_s("%d", &a);
+			}
 			r = numeroBits(a);//Llamamos a la función numeroBits y guardamos en r el resultado que devuelva la funcion numeroBits
+			printf("El número de bits para representar %d es: %d ", a, r);
 			break;//Sale del bucle al acabar el programa
 
 		case 8:
 			printf("Ejercicio 8: cambiar bits\n");//Proyectamos por pantalla
 			printf("Introduzca un numero entero positivo: ");//Proyectamos por pantalla
 			scanf_s("%d", &a);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
+			while (a < 0)
+			{
+				printf("Introduzca un numero entero positivo: ");
+				scanf_s("%d", &a);
+			}
 			printf("Posicion del bit inicial a invertir: ");//Proyectamos por pantalla
 			scanf_s("%d", &b);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
 			printf("Numero de bits a invertir ");//Proyectamos por pantalla
 			scanf_s("%d", &c);//Pedimos al usuario que inserte un numero y lo guardamos en la variable
 			r = cambiarBits(a, b, c);//Llamamos a la función cambiarBits y guardamos en r el resultado que devuelva la funcion cambiarBits
+			if (r == -1)
+			{
+				printf("Número de bits no valido");
+			}
+			else
+			printf("El número modificado es: %d ", r);
 			break;//Sale del bucle al acabar el programa
 
 		case 9:
@@ -221,12 +241,19 @@ int obtenerValorBit(int num, int p) // Función que obtiene el valor del bit en l
 long factorial(long g)// Función que calcula el factorial de un número 'g'
 {
 	long i = 0, j = 0; // Variables locales
-	j = g - 1; // Inicializamos j como g - 1 (será el contador que decrece en el bucle)
-	i = g * j; // Inicializamos i con el producto de g y j (g * (g - 1))
-	while (j > 1) // Mientras j sea mayor que 1, seguimos calculando el producto
+	if (g >= 0 && g <= 16)
 	{
-		j--; // Decrementamos j en 1
-		i = i * j; // Multiplicamos i por j
+		j = g - 1; // Inicializamos j como g - 1 (será el contador que decrece en el bucle)
+		i = g * j; // Inicializamos i con el producto de g y j (g * (g - 1))
+		while (j > 1) // Mientras j sea mayor que 1, seguimos calculando el producto
+		{
+			j--; // Decrementamos j en 1
+			i = i * j; // Multiplicamos i por j
+		}
+	}
+	else
+	{
+		return(-1);
 	}
 
 	return i; // Devolvemos el resultado final del factorial
